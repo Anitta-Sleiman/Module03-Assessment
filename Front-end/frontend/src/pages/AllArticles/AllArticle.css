@@ -1,0 +1,24 @@
+.card-container {
+  display: grid;
+  background-color: red;
+}
+
+/* .article-card {
+
+} */
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.key {
+  margin-right: 5px;
+}
