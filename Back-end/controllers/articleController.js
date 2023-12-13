@@ -1,30 +1,31 @@
 import Article from "../models/articleModel.js";
+import User from "../models/userModel.js"
 
 // create article
 export const createArticle = async (req, res) => {
-  const { title, category, body, author, image } = req.body;
-  try {
-    const existingArticle = await Article.findOne({ where: { title } });
-    if (existingArticle) {
-      return res.json({
-        message: "Article already found!",
-        status: 400,
+    const { title, category, body, author, image } = req.body;
+    try {
+      const existingArticle = await Article.findOne({ where: { title } });
+      if (existingArticle) {
+        return res.json({
+          message: "Article already found!",
+          status: 400,
+          error: true,
+        });
+      }
+      const article = await Article.create(req.body);
+      res.status(200).json({
+        message: article,
+        status: 200,
+        error: false,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error,
+        status: 500,
         error: true,
       });
     }
-    const article = await Article.create(req.body);
-    res.status(200).json({
-      message: article,
-      status: 200,
-      error: false,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error,
-      status: 500,
-      error: true,
-    });
-  }
 };
 
 // delete article

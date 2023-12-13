@@ -4,6 +4,7 @@ dotenv.config();
 import sequelize from "./db.js";
 import cors from "cors";
 import articleRoute from "./routes/articleRoute.js";
+import userRoute from "./routes/userRoute.js"
 import bodyParser from "body-parser";
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/images", express.static("images"));
 
 app.use("/api/article", articleRoute);
+app.use("/api/user", userRoute);
+
 
 //connecting to db
 sequelize.sync({ force: false });
